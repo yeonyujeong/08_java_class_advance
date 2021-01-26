@@ -6,7 +6,8 @@ public class Account {
 	int money = 0;
 	
 	void printOwnAccount() {
-		System.out.println(number + ":" + money);
+		System.out.println(number + " : " + money);
 	}
+	
 	
 }

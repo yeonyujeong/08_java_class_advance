@@ -8,26 +8,25 @@ public class UserManager {
 	User[] user = null;
 	int userCount = 0;
 	
-	void printAllUser(){
+	void printAllUser() {
 		for (int i = 0; i < userCount; i++) {
 			user[i].printAccount();
 		}
 	}
 	
-	void addUser() {
+	void addUser() { // atm 회원가입
 		
 		if(userCount == 0) {
 			user = new User[1];
 		}
 		else {
-			User [] temp = user;
-			user = new User[userCount + 1];
+			User[] temp = user;
+			user =  new User[userCount + 1];
 			for (int i = 0; i < userCount; i++) {
 				user[i] = temp[i];
 			}
 			temp = null;
 		}
-		
 		System.out.print("[가입] 아이디를 입력하세요 : ");
 		String id = scan.next();
 		
@@ -40,38 +39,72 @@ public class UserManager {
 		if(!isDuple) {
 			user[userCount] = new User();
 			user[userCount].id = id;
-			System.out.println("[메세지] 'ID : " + id + "가입되었습니다.'\n");
+			System.out.println("[메세지] ID : '" + id + "'가입되었습니다.\n");
 			userCount++;
 		}
 		else {
-			System.out.println("[메세지] '" + id + "'은 이미 가입된 아이디 입니다.\n");
+			System.out.println("[메세지] '" + id + "'는 이미 있는 아이디입니다.\n");
 		}
 		
-	}
-	
-	User getUser(int idx) {
-		return user[idx];
-	}
-	
-	int logUser() {
-		
+	}	
+	int logUser() { //atm로그인
+			
 		int identifier = -1;
-		System.out.println("[입력] 아이디를 입력하세요 : ");
+		System.out.print("[입력] 아이디를 입력하세요 : ");
 		String name = scan.next();
-		
+			
 		for (int i = 0; i < userCount; i++) {
 			if(name.equals(user[i].id)) {
 				identifier = i;
-				System.out.println("[" + user[identifier].id + " ]님 로그인\n");
+				System.out.println("[" + user[identifier].id + "님 로그인\n");
 			}
 		}
-		
 		return identifier;
 	}
 	
-	void leave() {
+	void leave( ) {
 		
+		System.out.print("탈퇴할 아이디를 입력해주세요 : ");
+		String name = scan.next();
+		int idx = -1;
+		for (int i = 0; i < userCount; i++) {
+			if(name.equals(user[i].id)) {
+				idx = i;
+			}
+		}
+		if(idx == -1) {
+			System.out.println("해당하는 아이디가 없습니다.");
+			return;
+		}
+		else {
+			User[] temp = user;
+			user = new User[userCount - 1];
+			
+			for (int i = 0; i < idx; i++) {
+				user[i] = temp[i];
+			}
+			for (int i = idx; i < userCount - 1; i++) {
+				user[i] = temp[i+1];
+			}
+			userCount--;
+			System.out.println("아이디 '" + name + "'이 탈퇴되었습니다.");
+		}
 	}
-	
-	
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+
 }
+	
+	
+	
+
