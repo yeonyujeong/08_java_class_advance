@@ -1,4 +1,4 @@
-// 2021.02.01
+// 2021.02.01 // 2021.02.03
 
 package step8_02.atm_v2.copy;
 
@@ -8,6 +8,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
+
 public class FileManager {
 	
 	private FileManager() {}
@@ -16,7 +17,7 @@ public class FileManager {
 		return instance;
 	}
 	
-	String fileName = "ATM.txt";
+	String fileName = "ATM2.txt";
 	String data = "";
 	UserManager um =  UserManager.getInstance();
 	
@@ -108,10 +109,12 @@ public class FileManager {
 					um.userList[j].accCnt = accCnt;
 					
 					String accInfo = temp[i+3];
+					
 					if(accCnt == 1) {
 						String[] tmp = accInfo.split("/");
 						String acc = tmp[0];
-						int money = Integer.parseInt(temp[1]);
+						int money = Integer.parseInt(tmp[1]);
+						um.userList[j].acc[0] = new Account();
 						um.userList[j].acc[0].accNumber = acc;
 						um.userList[j].acc[0].money = money;
 					}
@@ -119,9 +122,10 @@ public class FileManager {
 					if(accCnt > 1) {
 						String[] tmp = accInfo.split(",");
 						for (int k = 0; k < tmp.length; k++) {
-							String[] parse = temp[k].split("/");
+							String[] parse = tmp[k].split("/");
 							String acc = parse[0];
 							int money = Integer.parseInt(parse[1]);
+							um.userList[j].acc[k] = new Account();
 							um.userList[j].acc[k].accNumber = acc;
 							um.userList[j].acc[k].money = money;
 						}

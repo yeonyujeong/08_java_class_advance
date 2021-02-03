@@ -1,4 +1,4 @@
-// 2021.02.01
+// 2021.02.01 // 2021.02.03
 package step8_02.atm_v2.copy;
 
 import java.util.Random;
@@ -22,10 +22,10 @@ public class UserManager {
 	void printAllUser() {
 		
 		for (int i = 0; i < userCnt; i++) {
-			System.out.println((i+1) + ": ID )" + userList[i].id + "PW )" + userList[i].pw  );
+			System.out.println((i+1) + ": ID )" + userList[i].id + " PW )" + userList[i].pw  );
 			if(userList[i].accCnt != 0) {
 				for (int j = 0; j < userList[i].accCnt; j++) {
-					System.out.println("(" + userList[i].acc[j].accNumber + ":" + userList[i].acc[j].money);
+					System.out.println("(" + userList[i].acc[j].accNumber + ":" + userList[i].acc[j].money + ")");
 				}
 			}
 			System.out.println();
