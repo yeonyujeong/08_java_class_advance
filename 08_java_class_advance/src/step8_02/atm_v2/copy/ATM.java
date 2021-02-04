@@ -41,7 +41,7 @@ public class ATM {
 		System.out.println("[" +  um.userList[identifier].id + "] 님 환영합니다." );
 		
 		while(true) {			
-			System.out.println("[1.계좌생성]\n[2.계좌삭제]\n[3.조회]\n[4.회원탈퇴]\n[0.로그아웃]");
+			System.out.println("[1.계좌생성]\n[2.계좌삭제]\n[3.조회]\n[4.입금]\n[5.출금]\n[6.송금]\n[7.회원탈퇴]\n[0.로그아웃]");
 			System.out.print("메뉴 선택 : ");
 			int sel = scan.nextInt();
 			
@@ -57,10 +57,23 @@ public class ATM {
 				AccountManager.getInstance().printAcc(identifier);
 			}
 			else if(sel == 4) {
+				TransManager.getInstance().deposit(identifier);
+				FileManager.getInstance().save();
+			}
+			else if(sel == 5) {		
+				TransManager.getInstance().withdraw(identifier);
+				FileManager.getInstance().save();
+			}
+			else if(sel == 6) {
+				TransManager.getInstance().remittance(identifier);
+				FileManager.getInstance().save();
+			}
+			else if(sel == 7) {
 				identifier = um.deletMember(identifier);
 				FileManager.getInstance().save();
-				break;
+				break;		
 			}
+
 			else if(sel == 0) {
 				identifier = -1;
 				System.out.println("로그아웃되었습니다.");
