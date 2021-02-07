@@ -1,0 +1,86 @@
+1. 회원가입
+2. 로그인 - 1. 계좌생성 - 랜덤숫자계좌생성
+		  - 2. 계좌삭제
+		  - 3. 조회		- 아이디, 계좌 / 돈 보여줌
+		  - 4. 회원탈퇴 - 탈퇴, 로그아웃
+		  - 0. 로그아웃 
+3. 종료
+
+
+[Main] 
+new ATM().play();
+
+[ATM]
+void play - 파일 불러오기 ,  불러온 파일 유저 프린트 , 회원가입/로그인/종료 선택
+void login - um.logUser후 loginMenu실행
+void loginMenu - 로그인 후 계좌메뉴
+void join - UserManager.getInstance().joinMember();
+
+[FileManager]
+void setData 
+	1. 저장되어있던 데이터 불러오기
+	2. 새로운 데이터 저장
+	userCnt /n
+	id /n   pw /n   accCnt /n   (acc/money,)
+	
+void load
+*첫줄 빼고 한 id당 4줄씩 / [i] id , [i+1] pw , [i+2] accCnt , [i+3] acc/money
+	1. line에 모든 데이터 불러오기
+	2. [] tmp 배열에 \n 으로 잘라서 넣기
+	3. um.userCnt = tmp[0] 
+	4. um.userList =  um.userCnt만큼 User배열 만들기
+	5. um.userList.id / um.userList.pw 데이터 저장 ([i] [i+1])
+	6. um.userList.accCnt = [i+2] 계좌수
+	7. accInfo에 계좌정보 저장 후 - accCnt == 1 이면 /로 나눠서 Account배열 생성 후 acc/money저장
+								  - 아니면 ,로 계좌별로 나눈 후 Account배열 생성 후 /로 나눠서 acc/money저장
+	
+void save
+	setData() 후에 파일에 저장
+	
+
+[Account]
+String accNumber
+int money	
+	
+[AccountManager]
+AccountManager SingleTon
+
+void createAcc(int identifier)
+accCntByUser == 아이디별 계좌수 / 3개까지 생성 가능
+makeAccount 랜덤숫자계좌생성 후 배열에 추가
+
+void printAcc(int identifier)
+
+
+	
+[User]
+Account[] acc = new Account[UserManager.getInstance().ACC_MAX_CNT];	
+int accCnt;	
+String id;											
+String pw;	
+	
+[UserManager]
+
+void printAllUser
+유저 목록 프린트
+
+boolean getCheckAcc(string account)
+계좌 중복 검사
+
+int logUser
+로그인 후 identifier 반환
+
+boolean checkId(String id)
+아이디 중복 체크 
+
+void joinMember
+회원가입 
+checkId로 중복 검사
+userList배열에 id, pw저장
+FileManager save
+
+int deleteMember (int identifier)
+userList에서 삭제
+identifier = -1 후 identifier 반환 (로그아웃)
+
+
