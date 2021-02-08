@@ -6,7 +6,7 @@ public class User {
 	String id;
 	String pw;
 	HashMap<String, Integer> acc = new HashMap<>();
-	
+		
 	User(String id, String pw, HashMap<String , Integer> acc){
 		this.id = id;
 		this.pw = pw;

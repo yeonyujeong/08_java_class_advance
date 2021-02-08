@@ -90,7 +90,8 @@ public class FileManager {
 				for (int i = 1; i <temp.length; i++) {
 					int accCnt = Integer.parseInt(temp[i]);
 					if(accCnt == 0) {
-						um.user.add(new User(temp[i+1], temp[i+2], null));
+						HashMap<String, Integer> acc = new HashMap<>();
+						um.user.add(new User(temp[i+1], temp[i+2], acc));
 					}
 					else {
 					HashMap<String, Integer> acc = new HashMap<>();
@@ -100,7 +101,7 @@ public class FileManager {
 					}
 					um.user.add(new User(temp[i+1] , temp[i+2], acc));
 					}
-					i+= 3+accCnt;
+					i+= 2+accCnt;
 				}
 			}
 			else {

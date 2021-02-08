@@ -5,54 +5,61 @@ import java.util.Scanner;
 
 public class AccountManager {
 
-	private AccountManager () {};
+	private AccountManager () {}
 	static private AccountManager instance = new AccountManager();
 	static public AccountManager getInstance() {
 		return instance;
 	}
 	
-	UserManager um = UserManager.getInstance();
 	Scanner scan = new Scanner(System.in);
 	Random ran = new Random();
+	UserManager um = UserManager.getInstance();
 		
-	
-	boolean checkAccCnt(int identifier) {
-		boolean isCheckAccCnt = true;
-		if(um.user.get(identifier).acc.size() == 5) {
-			isCheckAccCnt = false;
-		}
-		return isCheckAccCnt;
-	}	
+
 	
 	
 	void createAcc(int identifier) {
-		if(!checkAccCnt(identifier)) {
-			System.out.println("더이상 계좌를 추가할 수 없습니다.");
-			return;
-		}
+		
+		UserManager um = UserManager.getInstance();
+
 		while(true) {
 			int makeAccount = ran.nextInt(99999)+10001;
 			String newAccount = Integer.toString(makeAccount);
 			
-			boolean isAccDuple = true;
-			for (int i = 0; i < um.user.size(); i++) {
-				for (String acc : um.user.get(i).acc.keySet()) {
-					if(acc.equals(newAccount)) {
-						isAccDuple = false; 
-					}
-				}
-			}
-			if(isAccDuple) {
+			System.out.println("==================");
+			System.out.println(UserManager.getInstance());///////////////////
+			System.out.println(um);/////////////////////////////////////////
+			System.out.println("==================");
+			
+			if(um.user.get(identifier).acc.size() == 0) {
 				um.user.get(identifier).acc.put(newAccount , 0);
 				System.out.println(newAccount + "계좌가 생성되었습니다.");
 				break;
 			}
+			else {
+				boolean isAccDuple = true;
+				for (int i = 0; i < um.user.size(); i++) {
+					for (String acc : um.user.get(i).acc.keySet()) {
+						if(acc.equals(newAccount)) {
+							isAccDuple = false; 
+						}
+					}
+				}
+				if(isAccDuple) {
+					um.user.get(identifier).acc.put(newAccount , 0);
+					System.out.println(newAccount + "계좌가 생성되었습니다.");
+					break;
+				}
+				
+			}		
 		}
+		
 	}
 	
 	
 	void printAcc(int identifier) {
-		System.out.println("=============================================");
+		UserManager um = UserManager.getInstance();
+		
 		for (String acc : um.user.get(identifier).acc.keySet()) {
 			System.out.println("계좌번호 : " + acc + "/ 현금 : " + um.user.get(identifier).acc.get(acc)+"원");
 		}
@@ -61,6 +68,8 @@ public class AccountManager {
 	
 	
 	void deleteAcc(int identifier) {
+		UserManager um = UserManager.getInstance();
+		
 		printAcc(identifier);
 		System.out.print("삭제하실 계좌번호를 입력해주세요 : ");
 		String deleteAcc = scan.next();

@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class TransManager {
 
 	
-	private TransManager() {};
+	private TransManager() {}
 	static private TransManager instance = new TransManager();
 	static public TransManager getInstance() {
 		return instance;
