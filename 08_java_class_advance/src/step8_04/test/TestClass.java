@@ -1,6 +1,7 @@
 // 2021.02.09 	1:00 - 2:25
 package step8_04.test;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 class Member {
 	
@@ -202,6 +203,15 @@ public class TestClass {
 			System.out.println("Custno : " + answerList[i].number + " / Custname : " + answerList[i].name + " / totPrice : " + answerList[i].totPrice );
 		}
 	
+		
+		//==================================================================================================================================================
+		
+		
+		HashMap<Integer, AnswerList> answerMap = new HashMap<Integer, AnswerList>();
+		
+//		for (int i = 0; i < mg.memberList.size(); i++) {
+//			answerMap.put(key, new AnswerList(mg.memberList.get(i).getCustno(), name, totPrice))
+//		}
 		
 		
 		/*
