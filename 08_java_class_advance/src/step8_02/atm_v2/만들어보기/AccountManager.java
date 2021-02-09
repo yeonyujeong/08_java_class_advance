@@ -20,16 +20,11 @@ public class AccountManager {
 	
 	void createAcc(int identifier) {
 		
-		UserManager um = UserManager.getInstance();
 
 		while(true) {
 			int makeAccount = ran.nextInt(99999)+10001;
 			String newAccount = Integer.toString(makeAccount);
-			
-			System.out.println("==================");
-			System.out.println(UserManager.getInstance());///////////////////
-			System.out.println(um);/////////////////////////////////////////
-			System.out.println("==================");
+	
 			
 			if(um.user.get(identifier).acc.size() == 0) {
 				um.user.get(identifier).acc.put(newAccount , 0);
@@ -58,7 +53,6 @@ public class AccountManager {
 	
 	
 	void printAcc(int identifier) {
-		UserManager um = UserManager.getInstance();
 		
 		for (String acc : um.user.get(identifier).acc.keySet()) {
 			System.out.println("계좌번호 : " + acc + "/ 현금 : " + um.user.get(identifier).acc.get(acc)+"원");
@@ -68,7 +62,6 @@ public class AccountManager {
 	
 	
 	void deleteAcc(int identifier) {
-		UserManager um = UserManager.getInstance();
 		
 		printAcc(identifier);
 		System.out.print("삭제하실 계좌번호를 입력해주세요 : ");

@@ -87,19 +87,20 @@ public class FileManager {
 				String [] temp = data.split("\n");
 				int userCnt = Integer.parseInt(temp[0]);
 				um.user = new ArrayList<User>();
+				
 				for (int i = 1; i <temp.length; i++) {
 					int accCnt = Integer.parseInt(temp[i]);
 					if(accCnt == 0) {
-						HashMap<String, Integer> acc = new HashMap<>();
-						um.user.add(new User(temp[i+1], temp[i+2], acc));
+						HashMap<String, Integer> accMap = new HashMap<>();
+						um.user.add(new User(temp[i+1], temp[i+2], accMap));
 					}
 					else {
-					HashMap<String, Integer> acc = new HashMap<>();
+					HashMap<String, Integer> accMap = new HashMap<>();
 					for (int j = 0; j < accCnt; j++) {
 						String[] accTemp = temp[i+3+j].split("/");
-						acc.put(accTemp[0], Integer.parseInt(accTemp[1]));
+						accMap.put(accTemp[0], Integer.parseInt(accTemp[1]));
 					}
-					um.user.add(new User(temp[i+1] , temp[i+2], acc));
+					um.user.add(new User(temp[i+1] , temp[i+2], accMap));
 					}
 					i+= 2+accCnt;
 				}

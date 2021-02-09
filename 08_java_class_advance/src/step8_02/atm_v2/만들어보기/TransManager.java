@@ -54,7 +54,7 @@ public class TransManager {
 		System.out.print("출금하실 금액을 입력해주세요 : ");
 		int withdrawMoney = scan.nextInt();
 		
-		if(withdrawMoney >= um.user.get(identifier).acc.get(withdrawAcc)) {
+		if(withdrawMoney <= um.user.get(identifier).acc.get(withdrawAcc)) {
 			um.user.get(identifier).acc.put(withdrawAcc, +withdrawMoney);
 		}else {
 			System.out.println("출금하실 금액이 부족합니다.");

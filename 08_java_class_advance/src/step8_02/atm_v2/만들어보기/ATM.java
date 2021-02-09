@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 public class ATM {
 	
+	AccountManager am = AccountManager.getInstance();
 	UserManager um = UserManager.getInstance();
 	Scanner scan = new Scanner(System.in);
 	int identifier = -1;
@@ -12,6 +13,7 @@ public class ATM {
 	void play() {
 		
 		FileManager.getIstance().load();
+		
 		um.printAllUser();
 		
 		while(true) {		

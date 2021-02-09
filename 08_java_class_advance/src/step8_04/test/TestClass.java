@@ -1,8 +1,65 @@
+// 2021.02.09 	1:00 - 2:25
 package step8_04.test;
 import java.util.ArrayList;
 
 class Member {
 	
+	public int getCustno() {
+		return custno;
+	}
+
+	public void setCustno(int custno) {
+		this.custno = custno;
+	}
+
+	public String getCustname() {
+		return custname;
+	}
+
+	public void setCustname(String custname) {
+		this.custname = custname;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getJoindate() {
+		return joindate;
+	}
+
+	public void setJoindate(String joindate) {
+		this.joindate = joindate;
+	}
+
+	public String getGrade() {
+		return grade;
+	}
+
+	public void setGrade(String grade) {
+		this.grade = grade;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
 	private int    custno;			// 회원번호
 	private String custname;		// 회원성명
 	private String phone;			// 회원전화
@@ -21,12 +78,8 @@ class Member {
 		this.joindate = joindate;
 		this.grade = grade;
 		this.city = city;
-	}
-	
+	}	
 }
-
-
-
 class Money {
 	
 	int custno;			// 회원번호
@@ -70,9 +123,12 @@ class Manager{
 		moneyList.add(new Money(100001, 20160001, 500, 5, 2500, "A001", "20160101"));
 		moneyList.add(new Money(100001, 20160002, 1000, 4, 4000, "A002", "20160101"));
 		moneyList.add(new Money(100001, 20160003, 500, 3, 1500, "A008", "20160101"));
+		
 		moneyList.add(new Money(100002, 20160004, 2000, 1, 2000, "A004", "20160102"));
 		moneyList.add(new Money(100002, 20160005, 500, 1, 500, "A001", "20160103"));
+		
 		moneyList.add(new Money(100003, 20160006, 1500, 2, 3000, "A003", "20160103"));
+		
 		moneyList.add(new Money(100004, 20160007, 500, 2, 1000, "A001", "20160104"));
 		moneyList.add(new Money(100004, 20160008, 300, 1, 300, "A005", "20160104"));
 		moneyList.add(new Money(100004, 20160009, 600, 1, 600, "A006", "20160104"));
@@ -80,8 +136,23 @@ class Manager{
 		
 	}
 	
+	
+	
 }
 
+class AnswerList{
+	
+	Integer number;
+	String name;
+	int totPrice;
+	
+	AnswerList(Integer number ,  String name ,  int totPrice){
+		
+		this.number = number;
+		this.name = name;
+		this.totPrice = totPrice;
+	}
+}
 
 
 
@@ -91,6 +162,47 @@ public class TestClass {
 		
 		Manager mg = new Manager();
 		mg.init();
+		
+		int memberCnt = 6;
+		
+		AnswerList[] answerList = new AnswerList[memberCnt];
+		
+		for (int i = 0; i < answerList.length; i++) {
+			answerList[i] = new AnswerList(null, null, 0);
+		}
+
+		// 번호랑 이름 넣기
+		for (int i = 0; i < answerList.length; i++) {
+			answerList[i].number = mg.memberList.get(i).getCustno();
+			answerList[i].name = mg.memberList.get(i).getCustname();
+			answerList[i].totPrice = 0;
+		}
+		// 돈 합쳐서 넣기
+		for (int i = 0; i < mg.moneyList.size(); i++) {
+			for (int j = 0; j < answerList.length; j++) {
+				if(mg.moneyList.get(i).custno == answerList[j].number){
+					answerList[j].totPrice += mg.moneyList.get(i).price;
+				}
+			}
+		}
+		
+		// 내림차순
+		for (int i = 0; i < answerList.length; i++) {
+			for (int j = i; j < answerList.length; j++) {
+				if(answerList[i].totPrice < answerList[j].totPrice) {
+					AnswerList temp = answerList[i];
+					answerList[i] = answerList[j];
+					answerList[j] = temp;	
+				}
+			}
+		}
+
+		//출력
+		for (int i = 0; i < answerList.length; i++) {
+			System.out.println("Custno : " + answerList[i].number + " / Custname : " + answerList[i].name + " / totPrice : " + answerList[i].totPrice );
+		}
+		
+		
 		
 		/*
 		   [문제] 아 래와 같이 출력  매출(price) 의 합계 + 내림차순 
@@ -104,7 +216,10 @@ public class TestClass {
 			100002	이축복		2500
 			--------------------------------
 		 */
-
+		
+		
+		
+		
 
 	}
 

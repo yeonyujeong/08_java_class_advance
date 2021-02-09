@@ -22,7 +22,7 @@ public class UserManager {
 		for (int i = 0; i < user.size(); i++) {
 			System.out.println("ID : "+ user.get(i).id + " / PW : "+ user.get(i).pw);
 			if(user.get(i).acc.size() != 0) {
-			am.printAcc(i);
+				am.printAcc(i);
 			}
 			else {
 				System.out.println("생성된 계좌 없음");
