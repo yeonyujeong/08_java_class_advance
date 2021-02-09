@@ -201,7 +201,7 @@ public class TestClass {
 		for (int i = 0; i < answerList.length; i++) {
 			System.out.println("Custno : " + answerList[i].number + " / Custname : " + answerList[i].name + " / totPrice : " + answerList[i].totPrice );
 		}
-		
+	
 		
 		
 		/*

@@ -33,7 +33,8 @@ public class TransManager {
 		System.out.print("입금하실 금액을 입력해주세요 : ");
 		int depositMoney = scan.nextInt();
 		
-		um.user.get(identifier).acc.put(checkAcc, +depositMoney);
+		int totDepositMoney = um.user.get(identifier).acc.get(checkAcc) + depositMoney;
+		um.user.get(identifier).acc.put(checkAcc, totDepositMoney);
 		System.out.println("입금이 완료되었습니다.");
 	}
 	
@@ -55,7 +56,8 @@ public class TransManager {
 		int withdrawMoney = scan.nextInt();
 		
 		if(withdrawMoney <= um.user.get(identifier).acc.get(withdrawAcc)) {
-			um.user.get(identifier).acc.put(withdrawAcc, +withdrawMoney);
+			int totWithdrawtMoney = um.user.get(identifier).acc.get(checkAcc) - withdrawMoney;
+			um.user.get(identifier).acc.put(withdrawAcc, totWithdrawtMoney);
 		}else {
 			System.out.println("출금하실 금액이 부족합니다.");
 		}
@@ -99,9 +101,11 @@ public class TransManager {
 			System.out.println("해당하는 계좌가 없습니다.");  
 			return;
 		}
+		int totYourRemitMoney = um.user.get(identifier).acc.get(checkYourAcc) + remitMoney;
+		int totMyRemitMoney = um.user.get(identifier).acc.get(checkAcc) - remitMoney;
 		
-		um.user.get(identifier).acc.put(remitAcc, -remitMoney);
-		um.user.get(checkYourAccIdx).acc.put(remitYourAcc, +remitMoney);
+		um.user.get(identifier).acc.put(remitAcc, totMyRemitMoney);
+		um.user.get(checkYourAccIdx).acc.put(remitYourAcc, totYourRemitMoney);
 		System.out.println("송금이 완료되었습니다.");
 		
 	}
