@@ -80,7 +80,7 @@ public class TransManager {
 		System.out.print("송금하실 금액을 입력해주세요 : ");
 		int remitMoney = scan.nextInt();
 		
-		if(remitMoney < um.user.get(identifier).acc.get(remitAcc)) {
+		if(remitMoney > um.user.get(identifier).acc.get(remitAcc)) {
 			System.out.println("송금하실 금액이 부족합니다.");
 			return;
 		}
