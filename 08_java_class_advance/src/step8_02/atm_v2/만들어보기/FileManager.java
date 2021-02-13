@@ -8,6 +8,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import atm_v1_arrayList.Account;
+
 public class FileManager {
 	
 	private FileManager() {};
@@ -19,6 +21,7 @@ public class FileManager {
 	String fileName = "ATM_practice.txt";
 	String data = "";
 	UserManager um = UserManager.getInstance();
+	AccountManager am = AccountManager.getInstance();
 	
 	void setData() {
 		

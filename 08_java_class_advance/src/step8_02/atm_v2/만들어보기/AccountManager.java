@@ -14,7 +14,7 @@ public class AccountManager {
 	Scanner scan = new Scanner(System.in);
 	Random ran = new Random();
 	UserManager um = UserManager.getInstance();
-		
+	FileManager fm = FileManager.getIstance();	
 
 	
 	
